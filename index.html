@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartKurikulum Center - SMKN 1 Maluku Tengah</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- RESET & GLOBAL STYLES --- */
+        :root {
+            --primary-blue: #1A73E8;
+            --primary-green: #34A853;
+            --accent-yellow: #f1c40f;
+            --text-dark: #333;
+            --text-light: #666;
+            --bg-light: #f4f7f6;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* --- 1. HEADER --- */
+        header {
+            background: var(--white);
+            padding: 15px 5%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo img {
+            height: 60px;
+            width: auto;
+        }
+
+        .header-text h1 {
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .header-text p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            font-weight: 400;
+        }
+
+        /* --- 2. HERO SECTION --- */
+        .hero {
+            background: linear-gradient(135deg, #1A73E8 0%, #34A853 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 80px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            max-width: 800px;
+        }
+
+        .hero-btn {
+            background: var(--white);
+            color: var(--primary-blue);
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .hero-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        /* --- 3. SEARCH BAR --- */
+        .search-container {
+            margin: -30px auto 40px;
+            width: 90%;
+            max-width: 600px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 15px 25px;
+            border-radius: 50px;
+            border: none;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            font-size: 1rem;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .search-box:focus {
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        /* --- 4. DASHBOARD (GRID) --- */
+        .main-content {
+            padding: 20px 5%;
+            flex: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .section-title {
+            margin: 30px 0 15px;
+            font-size: 1.2rem;
+            color: var(--text-light);
+            border-left: 5px solid;
+            padding-left: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 Kolom Desktop */
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        /* Responsive Mobile */
+        @media (max-width: 768px) {
+            .grid-container {
+                grid-template-columns: 1fr; /* 1 Kolom HP */
+            }
+            
+            .header-text h1 { font-size: 1.2rem; }
+            .hero h2 { font-size: 1.8rem; }
+        }
+
+        /* --- CARD STYLE --- */
+        .card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-top: 4px solid transparent;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.1);
+        }
+
+        .card i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+        }
+
+        .card p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        /* Category Colors */
+        .cat-a { border-color: var(--primary-blue); }
+        .cat-a i { color: var(--primary-blue); }
+
+        .cat-b { border-color: var(--primary-green); }
+        .cat-b i { color: var(--primary-green); }
+
+        .cat-c { border-color: var(--accent-yellow); }
+        .cat-c i { color: var(--accent-yellow); }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #2c3e50;
+            color: #bdc3c7;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: auto;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+        }
+
+        footer a {
+            color: var(--white);
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="https://freeimage.host/i/fBlmXdN">
+                <img src="https://iili.io/fBlmXdN.png" alt="Logo SMK Negeri 1 Maluku Tengah">
+            </a>
+        </div>
+        <div class="header-text">
+            <h1>SmartKurikulum Center</h1>
+            <p>Portal Informasi Guru SMK Negeri 1 Maluku Tengah</p>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h2>Akses Cepat Seluruh Informasi Kurikulum di Satu Tempat</h2>
+        <a href="#dashboard" class="hero-btn">Mulai Sekarang</a>
+    </section>
+
+    <div class="search-container">
+        <input type="text" id="searchInput" class="search-box" placeholder="🔍  Cari menu aplikasi atau informasi...">
+    </div>
+
+    <main id="dashboard" class="main-content">
+
+        <div class="section-header" style="color: var(--primary-blue);">
+            <h4 class="section-title" style="border-color: var(--primary-blue);">🔵 Administrasi Kurikulum</h4>
+        </div>
+        <div class="grid-container">
+            <a href="https://smkn1malteng.my.canva.site/bs8mcv8majfq0n7r" target="_blank" class="card-link">
+                <div class="card cat-a">
+                    <i class="fa-solid fa-clipboard-user"></i>
+                    <h3>Absensi Mapel</h3>
+                    <p>Input kehadiran Bahasa Inggris</p>
+                </div>
+            </a>
+            <a href="https://sites.google.com/view/kalender-pendidikan2025/home" target="_blank" class="card-link">
+                <div class="card cat-a">
+                    <i class="fa-solid fa-calendar-days"></i>
+                    <h3>Kalender Pendidikan</h3>
+                    <p>Tahun Ajaran 2025/2026</p>
+                </div>
+            </a>
+            <a href="https://smkn1malteng.my.canva.site/jam-mengajar-smk-negeri-1-maluku-tengah-2025-2026" target="_blank" class="card-link">
+                <div class="card cat-a">
+                    <i class="fa-solid fa-clock"></i>
+                    <h3>Pembagian Jam</h3>
+                    <p>Data beban mengajar guru</p>
+                </div>
+            </a>
+            <a href="https://smkn1malteng.my.canva.site/copy-of-ui-jadwal-interaktif-smkn-1-maluku-tengah-2025-2026" target="_blank" class="card-link">
+                <div class="card cat-a">
+                    <i class="fa-solid fa-table-list"></i>
+                    <h3>Jadwal Pembelajaran</h3>
+                    <p>Jadwal interaktif terbaru</p>
+                </div>
+            </a>
+        </div>
+
+        <div class="section-header" style="color: var(--primary-green);">
+            <h4 class="section-title" style="border-color: var(--primary-green);">🟢 Guru & Kelas</h4>
+        </div>
+        <div class="grid-container">
+            <a href="https://smkn1malteng.my.canva.site/dagwxsv7pai" target="_blank" class="card-link">
+                <div class="card cat-b">
+                    <i class="fa-solid fa-chalkboard-user"></i>
+                    <h3>Data Guru Wali</h3>
+                    <p>Database wali kelas aktif</p>
+                </div>
+            </a>
+            <a href="https://smkn1malteng.my.canva.site/dagwxrsiwr8" target="_blank" class="card-link">
+                <div class="card cat-b">
+                    <i class="fa-solid fa-book-open"></i>
+                    <h3>Tupoksi Guru Wali</h3>
+                    <p>Panduan tugas pokok & fungsi</p>
+                </div>
+            </a>
+            <a href="https://smkn1malteng.my.canva.site/dagztogsf-q" target="_blank" class="card-link">
+                <div class="card cat-b">
+                    <i class="fa-solid fa-mobile-screen-button"></i>
+                    <h3>Aplikasi Guru Wali</h3>
+                    <p>Tools monitoring siswa</p>
+                </div>
+            </a>
+            <a href="https://alexbahy34-code.github.io/perangkat-online-SMK/" target="_blank" class="card-link">
+                <div class="card cat-b">
+                    <i class="fa-solid fa-laptop-code"></i>
+                    <h3>Perangkat Online</h3>
+                    <p>Akses modul ajar & RPP</p>
+                </div>
+            </a>
+        </div>
+
+        <div class="section-header" style="color: var(--accent-yellow);">
+            <h4 class="section-title" style="border-color: var(--accent-yellow);">🟡 Penilaian & Pelaporan</h4>
+        </div>
+        <div class="grid-container">
+            <a href="https://sites.google.com/view/daftar-nilai-smkn1/home" target="_blank" class="card-link">
+                <div class="card cat-c">
+                    <i class="fa-solid fa-file-pen"></i>
+                    <h3>Daftar Nilai</h3>
+                    <p>Rekap nilai Semester Ganjil</p>
+                </div>
+            </a>
+            <a href="https://script.google.com/macros/s/AKfycbw4vDCff5BTE2DurxfF1dwKF7JeMTzHKFNWrp9S_jgrcl7ZSqYPnKoBpwnLkQsVMJX7/exec" target="_blank" class="card-link">
+                <div class="card cat-c">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <h3>Dashboard Laporan</h3>
+                    <p>Status penginputan nilai</p>
+                </div>
+            </a>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 SmartKurikulum Center - SMK Negeri 1 Maluku Tengah</p>
+        <p>Butuh bantuan? <a href="#">Hubungi Tim Kurikulum</a></p>
+        <small>Dikelola oleh Wakasek Kurikulum SMK Negeri 1 Maluku Tengah</small>
+    </footer>
+
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const cards = document.querySelectorAll('.card-link');
+        const sectionHeaders = document.querySelectorAll('.section-header');
+
+        searchInput.addEventListener('keyup', (e) => {
+            const term = e.target.value.toLowerCase();
+
+            cards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const subtitle = card.querySelector('p').textContent.toLowerCase();
+
+                if (title.includes(term) || subtitle.includes(term)) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        });
+    </script>
+</body>
+</html>
